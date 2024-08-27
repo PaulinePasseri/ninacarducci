@@ -114,12 +114,24 @@ nav a {
 	content: "";
 	display: block;
 	padding-bottom: 100%;
-
 }
-.gallery-item {
-	position: absolute;
+
+#gallery {
+	max-width: 1440px;
+	margin: auto;
+}
+
+.gallery {
 	width: 100%;
-	height: 100%;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.gallery img {
+	width: 440px;
+	height: 440px;
 	object-fit: cover;
 	padding: .5em;
 }
