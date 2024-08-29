@@ -66,27 +66,27 @@ nav a {
 }
 .banner-img{
 	min-width: 100%;
-	transition: transform 0.5s ease-in-out
+	transition: transform 0.5s ease-in-out;
 }
 
-.fa-chevron-left, .fa-chevron-right {
+.chevron-left-banner, .chevron-right-banner {
 	position: absolute;
 	font-size: 30px;
 	color: rgba(255, 255, 255, 0.589);
 	cursor: pointer;
 }
 
-.fa-chevron-left:hover, .fa-chevron-right:hover {
+.chevron-left-banner:hover, .chevron-right-banner:hover {
 	color: white;
 }
 
-.fa-chevron-left {
+.chevron-left-banner {
 	left: 130px;
 	top: 50%;
 	transform: translateY(-50%);
 }
 
-.fa-chevron-right {
+.chevron-right-banner {
 	top: 50%;
 	right: 130px;
 	transform: translateY(-50%);
@@ -201,6 +201,7 @@ nav a {
 	height: 423px;
 	object-fit: cover;
 	padding: .5em;
+	cursor: pointer;
 }
 .mg-prev, .mg-next {
 	width: 30px;
@@ -210,6 +211,48 @@ nav a {
 	align-items: center;
 	display: flex;
 	font-size: 24px;
+}
+
+/* Fenêtre modale */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal_wrapper {
+    background: white;
+    padding: 15px;
+    border-radius: 5px;
+    position: relative;
+}
+
+#galleryFocus img {
+	max-width: 500px;
+	max-height: 700px;
+}
+
+.chevron-left-modal, .chevron-right-modal {
+	position: absolute;
+	top: 50%;
+	background-color: white;
+	padding: 5px;
+}
+
+
+.chevron-left-modal {
+	left: -2%;
+	
+}
+
+.chevron-right-modal {
+	right: -2%;
 }
 
 /* Section quote */

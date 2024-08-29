@@ -27,8 +27,8 @@
 <div class="banner">
 
 	<img class="banner-img" src="./assets/images/slider/carrousel_rue.webp" alt="Homme traversant un passage piéton">
-	<i class="fa-solid fa-chevron-left"></i>
-	<i class="fa-solid fa-chevron-right"></i>	
+	<i class="fa-solid fa-chevron-left chevron-left-banner"></i>
+	<i class="fa-solid fa-chevron-right chevron-right-banner"></i>	
 	<div class="bulletpoints">
 	</div>
 
@@ -53,9 +53,15 @@
 		<span class="filters__btn" id="btn-mariages">Mariages</span>
 		<span class="filters__btn" id="btn-portraits">Portraits</span>
 	</div>
-	<div class="gallery">
-			
-	</div>
+	<div class="gallery"></div>
+	<aside id="modal" class="modal" aria-hidden="true" role="dialog" aria-modal="false" style="display:none;">
+		<div class="modal_wrapper js-modal-stop">
+			<i class="fa-solid fa-chevron-left chevron-left-modal"></i>
+			<i class="fa-solid fa-chevron-right chevron-right-modal"></i>
+			<div id="galleryFocus">
+			</div>
+		</div>
+	</aside>
 	<div class="quote">
 		<figure>
 			<blockquote>
