@@ -270,7 +270,7 @@ nav a {
 
 /* Section services */
 #services {
-	margin: auto;
+	margin: 50px auto;
 	background-color: #A8D5D8 ;
 	position: relative;
 }
@@ -288,11 +288,12 @@ nav a {
 #services .container {
 	justify-content: space-between;
 	display: flex;
+	flex-direction: row;
 	padding : 2em 0;
 
 }
 
-.service {
+article {
 	background-color: white;
 	max-width: 390px;
 	width: 30%;
@@ -302,6 +303,14 @@ nav a {
 	flex-direction: column;
 	justify-content: space-between;
 	z-index: 1;
+}
+
+article p {
+	margin: 0;
+}
+
+.service__price {
+	font-size: 22px;
 }
 
 
