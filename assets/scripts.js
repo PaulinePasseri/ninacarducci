@@ -198,12 +198,21 @@ function updateModalImage() {
 const openModal = function (index) {
     currentImageIndex = index
     modal = document.querySelector("#modal")
+    const modalWrapper = modal.querySelector(".modal_wrapper") 
     focusables = Array.from(modal.querySelectorAll(focusableSelector))
+    
+    modalWrapper.classList.remove('animate')
+    
     modal.style.display = "flex"
     modal.removeAttribute("aria-hidden")
     modal.setAttribute("aria-modal", "true")
 
-    updateModalImage();
+    updateModalImage()
+
+    setTimeout(() => {
+        modal.classList.add('show')
+        modalWrapper.classList.add('animate')
+    }, 10)
 
     modal.addEventListener("click", closeModal)
     modal.querySelector(".chevron-left-modal").addEventListener("click", showPreviousImage)
@@ -236,16 +245,21 @@ function showNextImage(e) {
 const closeModal = function (e) {
     if (modal === null) return
     e.preventDefault()
-    modal.style.display = "none"
-    modal.setAttribute("aria-hidden", "true")
-    modal.removeAttribute("aria-modal")
-    modal.removeEventListener("click", closeModal)
-    modal.querySelector(".chevron-left-modal").removeEventListener("click", showPreviousImage)
-    modal.querySelector(".chevron-right-modal").removeEventListener("click", showNextImage)
-    modal.querySelector(".js-modal-stop").removeEventListener("click", stopPropagation)
-    modal = null
-}
-
-const stopPropagation = function (e) {
-    e.stopPropagation()
+    
+    const modalWrapper = modal.querySelector(".modal_wrapper")
+    
+    // Retirez les classes d'animation
+    modal.classList.remove('show')
+    modalWrapper.classList.remove('animate')
+    
+    setTimeout(() => {
+        modal.style.display = "none"
+        modal.setAttribute("aria-hidden", "true")
+        modal.removeAttribute("aria-modal")
+        modal.removeEventListener("click", closeModal)
+        modal.querySelector(".chevron-left-modal").removeEventListener("click", showPreviousImage)
+        modal.querySelector(".chevron-right-modal").removeEventListener("click", showNextImage)
+        modal.querySelector(".js-modal-stop").removeEventListener("click", stopPropagation)
+        modal = null
+    }, 300) 
 }
