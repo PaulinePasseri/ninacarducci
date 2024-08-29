@@ -1,72 +1,97 @@
 // Gestion du carrousel 
-const slides = [
-	{
-		"image":"assets/images/slider/carrousel_rue.webp",
-		"alt":"Homme traversant un passage piéton"
-	},
-	{
-		"image":"assets/images/slider/carrousel_concert.webp",
-		"alt":"Foule dans un concert"
-	},
-	{
-		"image":"assets/images/slider/carrousel_mariage.webp",
-		"alt":"Mariés qui dansent"
-	}
-]
 
-let imageActive = document.querySelector(".banner-img")
+let bannerContainer = document.querySelector(".banner-container")
+let images = bannerContainer.querySelectorAll(".banner-img")
 let slideLeft = document.querySelector(".fa-chevron-left")
 let slideRight = document.querySelector(".fa-chevron-right")
-let currentSlide = 0
+let currentSlide = 1
+let imageWidth = images[0].offsetWidth
+const transitionDuration = 800
 
-// Event Listener
-slideLeft.addEventListener("click", () => {
-	currentSlide--
-	if (currentSlide < 0) {
-		currentSlide = slides.length - 1
-	}
-	newSlide(currentSlide)
+// Fonction de throttling
+function throttle(func, limit) {
+    let inThrottle
+    return function() {
+        const args = arguments
+        const context = this
+        if (!inThrottle) {
+            func.apply(context, args)
+            inThrottle = true
+            setTimeout(() => inThrottle = false, limit)
+        }
+    }
+}
+
+// Animation pour faire défiler les images
+function slideImages(direction) {
+    currentSlide += direction
+    
+    // Transition normale
+    bannerContainer.style.transition = `transform ${transitionDuration}ms ease`
+    bannerContainer.style.transform = `translateX(-${currentSlide * imageWidth}px)`
+    
+    // Vérifie si nous sommes sur un clone et ajuste si nécessaire
+    setTimeout(() => {
+        if (currentSlide <= 0) {
+            bannerContainer.style.transition = "none"
+            currentSlide = images.length - 2
+            bannerContainer.style.transform = `translateX(-${currentSlide * imageWidth}px)`
+        } else if (currentSlide >= images.length - 1) {
+            bannerContainer.style.transition = "none"
+            currentSlide = 1
+            bannerContainer.style.transform = `translateX(-${currentSlide * imageWidth}px)`
+        }
+        updateBulletPoint()
+    }, transitionDuration)
+
+    updateBulletPoint()
+}
+
+// Mise à jour des bullet points
+function updateBulletPoint() {
+    let bulletList = document.querySelector(".bulletpoints")
+    let bullets = bulletList.querySelectorAll('.bulletpoint')
+    bullets.forEach((bullet, index) => {
+        if (index === (currentSlide - 1 + images.length - 2) % (images.length - 2)) {
+            bullet.classList.add("bulletpoint_selected")
+        } else {
+            bullet.classList.remove("bulletpoint_selected")
+        }
+    })
+}
+
+// Création des fonctions throttled pour les clics sur les flèches
+const throttledSlideLeft = throttle(() => slideImages(-1), transitionDuration)
+const throttledSlideRight = throttle(() => slideImages(1), transitionDuration)
+
+// Event Listeners pour les flèches avec throttling
+slideLeft.addEventListener("click", throttledSlideLeft)
+slideRight.addEventListener("click", throttledSlideRight)
+
+// Initialisation des Bullet Points
+function initBulletPoints() {
+    let bulletList = document.querySelector(".bulletpoints")
+    bulletList.innerHTML = ""
+    for (let i = 0; i < images.length - 2; i++) {
+        let bullet = document.createElement("span")
+        bullet.classList.add("bulletpoint")
+        bulletList.append(bullet)
+    }
+    updateBulletPoint()
+}
+
+// Initialisation
+bannerContainer.style.transform = `translateX(-${imageWidth}px)` // Commencez à la première vraie image
+initBulletPoints()
+
+// Ajustement de la largeur du conteneur
+bannerContainer.style.width = `${images.length * 100}%`
+
+// Gestion du redimensionnement
+window.addEventListener('resize', () => {
+    imageWidth = images[0].offsetWidth
+    bannerContainer.style.transform = `translateX(-${currentSlide * imageWidth}px)`
 })
-
-
-slideRight.addEventListener("click", () => {
-	currentSlide++
-	if (currentSlide >= slides.length) {
-		currentSlide = 0
-	}
-	newSlide(currentSlide)
-})
-
-// Ajout des Bullet Points
-function changeBulletPoint(activeBullet) {
-	let bulletList = document.querySelector(".bulletpoints")
-	bulletList.innerHTML = ""
-	for (let i=0; i < slides.length; i++) {
-		let bullet = document.createElement("span")
-		bullet.classList.add("bulletpoint")
-		if (i === activeBullet) {
-			bullet.classList.add("bulletpoint_selected")
-		} 
-		bulletList.append(bullet)
-	}
-}
-
-
-// Changement d'image active
-function changeImage(image) {
-	imageActive.src = slides[image].image
-    imageActive.alt = slides[image].alt
-}
-
-// Mise à jour de la slide
-function newSlide (slide) {
-	changeImage(slide)
-	changeBulletPoint(slide)
-}
-
-// Evénement sur les flèches
-changeBulletPoint(currentSlide) 
-
 
 
 // ___________________________________________________________
