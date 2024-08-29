@@ -69,15 +69,7 @@ changeBulletPoint(currentSlide)
 
 
 
-
-
-
-
-
-
-
-
-
+// ___________________________________________________________
 
 
 // Gestion de la galerie
@@ -96,15 +88,15 @@ function getWorks() {
 
 // Galerie générée 
 function generateGallery(images) {
-    currentFilteredImages = images;
+    currentFilteredImages = images
     gallery.innerHTML = ""
     images.forEach((image, index) => {
-        const img = document.createElement('img');
-        img.src = image.src;
-        img.alt = image.alt;
-        img.id = image.id;
-        img.addEventListener('click', () => openModal(index));
-        gallery.appendChild(img);
+        const img = document.createElement('img')
+        img.src = image.src
+        img.alt = image.alt
+        img.id = image.id
+        img.addEventListener('click', () => openModal(index))
+        gallery.appendChild(img)
     })
 }
 
@@ -153,7 +145,7 @@ getWorks()
 
 
 
-
+// ______________________________________________________
 
 
 // Gestion de la modale 
@@ -163,20 +155,20 @@ let focusables = []
 let currentImageIndex = 0
 
 function updateModalImage() {
-    const image = currentFilteredImages[currentImageIndex];
-    const modalImage = document.createElement('img');
-    modalImage.src = image.src;
-    modalImage.alt = image.alt;
-    modalImage.classList.add('modal-image');
+    const image = currentFilteredImages[currentImageIndex]
+    const modalImage = document.createElement('img')
+    modalImage.src = image.src
+    modalImage.alt = image.alt
+    modalImage.classList.add('modal-image')
     
-    const galleryFocus = modal.querySelector("#galleryFocus");
-    galleryFocus.innerHTML = ''; 
-    galleryFocus.appendChild(modalImage);
+    const galleryFocus = modal.querySelector("#galleryFocus")
+    galleryFocus.innerHTML = ''
+    galleryFocus.appendChild(modalImage)
 }
 
 // Ouverture de la modale 
 const openModal = function (index) {
-    currentImageIndex = index;
+    currentImageIndex = index
     modal = document.querySelector("#modal")
     focusables = Array.from(modal.querySelectorAll(focusableSelector))
     modal.style.display = "flex"
@@ -192,17 +184,26 @@ const openModal = function (index) {
 }
 
 function showPreviousImage(e) {
-    e.stopPropagation();
-    currentImageIndex = (currentImageIndex - 1 + currentFilteredImages.length) % currentFilteredImages.length;
-    updateModalImage();
+    e.stopPropagation()
+    if (currentImageIndex > 0) {
+        currentImageIndex--
+    } else {
+        currentImageIndex = currentFilteredImages.length - 1
+    }
+    
+    updateModalImage()
 }
 
 function showNextImage(e) {
-    e.stopPropagation();
-    currentImageIndex = (currentImageIndex + 1) % currentFilteredImages.length;
-    updateModalImage();
+    e.stopPropagation()
+    if (currentImageIndex < currentFilteredImages.length - 1) {
+        currentImageIndex++
+    } else {
+        currentImageIndex = 0
+    }
+    
+    updateModalImage()
 }
-
 
 const closeModal = function (e) {
     if (modal === null) return
