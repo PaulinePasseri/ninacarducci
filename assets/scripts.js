@@ -83,6 +83,7 @@ changeBulletPoint(currentSlide)
 // Gestion de la galerie
 let gallery = document.querySelector(".gallery")
 let works = []
+let currentFilteredImages = []
 
 function getWorks() {
     fetch("../images.json").then(response => {
@@ -95,13 +96,14 @@ function getWorks() {
 
 // Galerie générée 
 function generateGallery(images) {
+    currentFilteredImages = images;
     gallery.innerHTML = ""
-    images.forEach(image => {
+    images.forEach((image, index) => {
         const img = document.createElement('img');
         img.src = image.src;
         img.alt = image.alt;
         img.id = image.id;
-        img.addEventListener('click', () => openModal(image));
+        img.addEventListener('click', () => openModal(index));
         gallery.appendChild(img);
     })
 }
@@ -109,49 +111,35 @@ function generateGallery(images) {
 // Gestion des filtres 
 const btnTous = document.getElementById("btn-tous")
 btnTous.addEventListener("click", function() {
-    const galerieTous = works
-    generateGallery(galerieTous)
+    generateGallery(works)
     btnActive(btnTous)
 })
 
 const btnConcerts = document.getElementById("btn-concerts")
-
 btnConcerts.addEventListener("click", function () {
-    const galerieConcerts = works.filter(function(item) {
-        return item.tag === "Concerts"
-        })
-        generateGallery(galerieConcerts)
-        btnActive(btnConcerts)
+    const galerieConcerts = works.filter(item => item.tag === "Concerts")
+    generateGallery(galerieConcerts)
+    btnActive(btnConcerts)
 })
-
 const btnEntreprises = document.getElementById("btn-entreprises")
-
 btnEntreprises.addEventListener("click", function () {
-    const galerieEntreprises = works.filter(function(item) {
-        return item.tag === "Entreprises"
-        })
-        generateGallery(galerieEntreprises)
-        btnActive(btnEntreprises)
+    const galerieEntreprises = works.filter(item => item.tag === "Entreprises")
+    generateGallery(galerieEntreprises)
+    btnActive(btnEntreprises)
 })
 
 const btnMariages = document.getElementById("btn-mariages")
-
 btnMariages.addEventListener("click", function () {
-    const galerieMariages = works.filter(function(item) {
-        return item.tag === "Mariages"
-        })
-        generateGallery(galerieMariages)
-        btnActive(btnMariages)
+    const galerieMariages = works.filter(item => item.tag === "Mariages")
+    generateGallery(galerieMariages)
+    btnActive(btnMariages)
 })
 
 const btnPortraits = document.getElementById("btn-portraits")
-
 btnPortraits.addEventListener("click", function () {
-    const galeriePortraits = works.filter(function(item) {
-        return item.tag === "Portraits"
-        })
-        generateGallery(galeriePortraits)
-        btnActive(btnPortraits)
+    const galeriePortraits = works.filter(item => item.tag === "Portraits")
+    generateGallery(galeriePortraits)
+    btnActive(btnPortraits)
 })
 
 function btnActive(e) {
@@ -167,33 +155,54 @@ getWorks()
 
 
 
+
 // Gestion de la modale 
 let modal = null
 const focusableSelector = "i"
 let focusables = []
+let currentImageIndex = 0
 
-// Ouverture de la modale 
-const openModal = function (image) {
-    modal = document.querySelector("#modal")
-    focusables = Array.from(modal.querySelectorAll(focusableSelector))
-    modal.style.display = "flex"
-    modal.removeAttribute("aria-hidden")
-    modal.setAttribute("aria-modal", "true")
-
-    // Ajouter l'image à la modale
+function updateModalImage() {
+    const image = currentFilteredImages[currentImageIndex];
     const modalImage = document.createElement('img');
     modalImage.src = image.src;
     modalImage.alt = image.alt;
     modalImage.classList.add('modal-image');
     
     const galleryFocus = modal.querySelector("#galleryFocus");
-    galleryFocus.innerHTML = ''; // Nettoyer le contenu précédent
+    galleryFocus.innerHTML = ''; 
     galleryFocus.appendChild(modalImage);
+}
+
+// Ouverture de la modale 
+const openModal = function (index) {
+    currentImageIndex = index;
+    modal = document.querySelector("#modal")
+    focusables = Array.from(modal.querySelectorAll(focusableSelector))
+    modal.style.display = "flex"
+    modal.removeAttribute("aria-hidden")
+    modal.setAttribute("aria-modal", "true")
+
+    updateModalImage();
 
     modal.addEventListener("click", closeModal)
-    modal.querySelector(".js-modal-close").addEventListener("click", closeModal)
+    modal.querySelector(".chevron-left-modal").addEventListener("click", showPreviousImage)
+    modal.querySelector(".chevron-right-modal").addEventListener("click", showNextImage)
     modal.querySelector(".js-modal-stop").addEventListener("click", stopPropagation)
 }
+
+function showPreviousImage(e) {
+    e.stopPropagation();
+    currentImageIndex = (currentImageIndex - 1 + currentFilteredImages.length) % currentFilteredImages.length;
+    updateModalImage();
+}
+
+function showNextImage(e) {
+    e.stopPropagation();
+    currentImageIndex = (currentImageIndex + 1) % currentFilteredImages.length;
+    updateModalImage();
+}
+
 
 const closeModal = function (e) {
     if (modal === null) return
@@ -202,7 +211,8 @@ const closeModal = function (e) {
     modal.setAttribute("aria-hidden", "true")
     modal.removeAttribute("aria-modal")
     modal.removeEventListener("click", closeModal)
-    modal.querySelector(".js-modal-close").removeEventListener("click", closeModal)
+    modal.querySelector(".chevron-left-modal").removeEventListener("click", showPreviousImage)
+    modal.querySelector(".chevron-right-modal").removeEventListener("click", showNextImage)
     modal.querySelector(".js-modal-stop").removeEventListener("click", stopPropagation)
     modal = null
 }
