@@ -203,15 +203,6 @@ nav a {
 	padding: .5em;
 	cursor: pointer;
 }
-.mg-prev, .mg-next {
-	width: 30px;
-	height: 30px;
-	border-radius: 00%;
-	justify-content: center;
-	align-items: center;
-	display: flex;
-	font-size: 24px;
-}
 
 /* Fenêtre modale */
 .modal {
