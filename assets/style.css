@@ -11,6 +11,10 @@ h2 {
 	font-size: 24px;
 }
 
+strong {
+	font-size: 16px;
+}
+
 p {
 	font-size: 14px;
 }
@@ -174,8 +178,7 @@ nav a {
 }
 
 .filters__btn--clicked {
-	color: #fff;
-	background-color: #BEB45A;
+	background-color: #E5975F;
 	border-radius:0 ;
 }
 

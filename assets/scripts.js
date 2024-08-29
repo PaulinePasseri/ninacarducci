@@ -94,12 +94,10 @@ const slides = [
 	}
 ]
 
-let imageContainer = document.querySelector(".banner")
 let imageActive = document.querySelector(".banner-img")
 let slideLeft = document.querySelector(".fa-chevron-left")
 let slideRight = document.querySelector(".fa-chevron-right")
 let currentSlide = 0
-let isAnimating = false;
 
 // Event Listener
 slideLeft.addEventListener("click", () => {
@@ -137,17 +135,12 @@ function changeBulletPoint(activeBullet) {
 // Changement d'image active
 function changeImage(image) {
 	imageActive.src = slides[image].image
-}
-
-// Changement de tagline active
-function changeAltTitle(alt) {
-	altActive.alt = slides[alt].alt
+    imageActive.alt = slides[image].alt
 }
 
 // Mise à jour de la slide
 function newSlide (slide) {
 	changeImage(slide)
-	changeAltTitle(slide)
 	changeBulletPoint(slide)
 }
 
