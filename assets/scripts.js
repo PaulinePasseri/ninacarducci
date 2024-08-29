@@ -122,6 +122,9 @@ function generateGallery(images) {
         img.id = image.id
         img.addEventListener('click', () => openModal(index))
         gallery.appendChild(img)
+        setTimeout(() => {
+            img.classList.add('animate');
+        }, index * 50)
     })
 }
 

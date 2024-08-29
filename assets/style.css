@@ -206,7 +206,24 @@ nav a {
 	object-fit: cover;
 	padding: .5em;
 	cursor: pointer;
+	opacity: 0;
 }
+
+.gallery img.animate {
+    animation: appearFromTopLeft 0.5s ease forwards;
+}
+
+@keyframes appearFromTopLeft {
+    from {
+        opacity: 0;
+        transform: translate(-50px, -50px);
+    }
+    to {
+        opacity: 1;
+        transform: translate(0, 0);
+    }
+}
+
 
 /* Fenêtre modale */
 .modal {
