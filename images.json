@@ -1,6 +1,6 @@
 [
     {
-        "tag": "Concert",
+        "tag": "Concerts",
         "src": "./assets/images/gallery/concerts/aaron-paul-wnX-fXzB6Cw-unsplash.webp",
         "alt": "intérieur d'une salle de concert",
         "id": 1
@@ -24,7 +24,7 @@
         "id": 4
     },
     {
-        "tag": "Portrait",
+        "tag": "Portraits",
         "src": "./assets/images/gallery/portraits/ade-tunji-rVkhWWZFAtQ-unsplash.webp",
         "alt": "portrait d'un homme au soleil",
         "id": 5
@@ -36,13 +36,13 @@
         "id": 6
     },
     {
-        "tag": "Portrait",
+        "tag": "Portraits",
         "src": "./assets/images/gallery/portraits/nino-van-prattenburg--443cl1uR_8-unsplash.webp",
         "alt": "portrait d'une femme derrière un grillage",
         "id": 7
     },
     {
-        "tag": "Concert",
+        "tag": "Concerts",
         "src": "./assets/images/gallery/concerts/austin-neill-hgO1wFPXl3I-unsplash.webp",
         "alt": "chanteur sur scène",
         "id": 8

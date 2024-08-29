@@ -6,6 +6,16 @@ body {
 	font-family: 'Inter';
 	font-style: normal;
 }
+
+h2 {
+	font-size: 24px;
+}
+
+p {
+	font-size: 14px;
+}
+
+/* Header */
 .top-header {
 	background-color: white;
 	position: sticky;
@@ -42,6 +52,60 @@ nav a {
 	width: 20px;
 }
 
+
+/* Section bannière */
+.banner {
+	position: relative;
+	display: flex;
+    transition: transform 0.5s ease-in-out;
+
+}
+.banner-img{
+	min-width: 100%;
+	transition: transform 0.5s ease-in-out
+}
+
+.fa-chevron-left, .fa-chevron-right {
+	position: absolute;
+	font-size: 30px;
+	color: rgba(255, 255, 255, 0.589);
+	cursor: pointer;
+}
+
+.fa-chevron-left:hover, .fa-chevron-right:hover {
+	color: white;
+}
+
+.fa-chevron-left {
+	left: 130px;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.fa-chevron-right {
+	top: 50%;
+	right: 130px;
+	transform: translateY(-50%);
+}
+
+.bulletpoints {
+	position: absolute;
+	bottom: 20px;
+	left: 50%;
+	display: flex;
+	gap: 10px;
+}
+.bulletpoint {
+	background-color: gray;
+	width: 30px;
+	height: 3px;
+}
+
+.bulletpoint_selected {
+	background-color: white;
+}
+
+/* Section about */
 #about {
 	display: flex;
 	background-color: #F6D2B8;
@@ -90,31 +154,31 @@ nav a {
 	font-size: 14px;
 }
 
-.title{
+/* Section portfolio */
+.title {
 	text-align: center;
 	padding-block: 2em;
 }
-.gallery .nav {
+.filters {
+	display: flex;
 	justify-content: center;
+	color: #000;
+	gap: 30px;
+	margin: 40px 0 30px 0;
+	font-size: 14px;
 }
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+
+.filters__btn {
+	padding: 7px 12px;
+	cursor: pointer;
+}
+
+.filters__btn--clicked {
 	color: #fff;
 	background-color: #BEB45A;
 	border-radius:0 ;
 }
-.nav-pills .nav-link {
-	color: #000
-}
-.item-column {
-	position: relative;
-	margin-bottom: 0 !important;
-	padding: 0;
-}
-.item-column::after{
-	content: "";
-	display: block;
-	padding-bottom: 100%;
-}
+
 
 #gallery {
 	max-width: 1440px;
@@ -130,8 +194,8 @@ nav a {
 }
 
 .gallery img {
-	width: 440px;
-	height: 440px;
+	width: 423px;
+	height: 423px;
 	object-fit: cover;
 	padding: .5em;
 }
@@ -145,6 +209,7 @@ nav a {
 	font-size: 24px;
 }
 
+/* Section quote */
 .quote {
 	font-family: 'Spectral';
 	font-style: italic;
@@ -165,6 +230,7 @@ nav a {
 	font-size: 22px;
 }
 
+/* Section services */
 #services {
 	margin: auto;
 	background-color: #A8D5D8 ;
@@ -200,6 +266,8 @@ nav a {
 	z-index: 1;
 }
 
+
+/* Section contact */
 #contact {
 	margin: auto;
 	background-color: #D8D3A8 ;
