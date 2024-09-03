@@ -112,10 +112,6 @@ nav a {
 	padding-block: 2em;
 }
 
-#gallery {
-	/*	min-height: 100vh; */
-}
-
 .gallery .nav {
 	justify-content: center;
 }
