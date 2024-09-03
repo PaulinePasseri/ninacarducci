@@ -57,62 +57,6 @@ nav a {
 	width: 20px;
 }
 
-
-/* Section bannière */
-.banner {
-	position: relative;
-	display: flex;
-	overflow: hidden;
-}
-
-.banner-container {
-    display: flex;
-    transition: transform 0.8s ease;
-}
-
-.banner-img {
-    width: 100%;
-    flex-shrink: 0;
-}
-
-.chevron-left-banner, .chevron-right-banner {
-	position: absolute;
-	font-size: 30px;
-	color: rgba(255, 255, 255, 0.589);
-	cursor: pointer;
-}
-
-.chevron-left-banner:hover, .chevron-right-banner:hover {
-	color: white;
-}
-
-.chevron-left-banner {
-	left: 130px;
-	top: 50%;
-}
-
-.chevron-right-banner {
-	top: 50%;
-	right: 130px;
-}
-
-.bulletpoints {
-	position: absolute;
-	bottom: 20px;
-	left: 50%;
-	display: flex;
-	gap: 10px;
-}
-.bulletpoint {
-	background-color: gray;
-	width: 30px;
-	height: 3px;
-}
-
-.bulletpoint_selected {
-	background-color: white;
-}
-
 /* Section about */
 #about {
 	display: flex;
@@ -176,7 +120,7 @@ nav a {
 	justify-content: center;
 }
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-	color: #fff;
+	color: black;
 	background-color: #E5975F;
 	border-radius:0 ;
 }
