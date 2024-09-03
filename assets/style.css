@@ -167,129 +167,48 @@ nav a {
 	text-align: center;
 	padding-block: 2em;
 }
-.filters {
-	display: flex;
+
+#gallery {
+	/*	min-height: 100vh; */
+}
+
+.gallery .nav {
 	justify-content: center;
-	color: #000;
-	gap: 30px;
-	margin: 40px 0 30px 0;
-	font-size: 14px;
 }
-
-.filters__btn {
-	padding: 7px 12px;
-	cursor: pointer;
-}
-
-.filters__btn--clicked {
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+	color: #fff;
 	background-color: #E5975F;
 	border-radius:0 ;
 }
-
-
-#gallery {
-	max-width: 1440px;
-	margin: auto;
+.nav-pills .nav-link {
+	color: #000
 }
+.item-column {
+	position: relative;
+	margin-bottom: 0 !important;
+	padding: 0;
+}
+.item-column::after{
+	content: "";
+	display: block;
+	padding-bottom: 100%;
 
-.gallery {
+}
+.gallery-item {
+	position: absolute;
 	width: 100%;
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	justify-content: center;
-}
-
-.gallery img {
-	width: 423px;
-	height: 423px;
+	height: 100%;
 	object-fit: cover;
 	padding: .5em;
-	cursor: pointer;
-	opacity: 0;
 }
-
-.gallery img.animate {
-    animation: appearFromTopLeft 0.5s ease forwards;
-}
-
-@keyframes appearFromTopLeft {
-    from {
-        opacity: 0;
-        transform: translate(-50px, -50px);
-    }
-    to {
-        opacity: 1;
-        transform: translate(0, 0);
-    }
-}
-
-
-/* Fenêtre modale */
-.modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-	z-index: 1000;
-	opacity: 0; 
-    transition: opacity 0.3s ease;
-}
-
-.modal.show {
-    opacity: 1;
-}
-
-.modal_wrapper {
-    background: white;
-    padding: 15px;
-    border-radius: 5px;
-    position: relative;
-    transform: translateY(-100%);
-    opacity: 0;
-}
-
-.modal_wrapper.animate {
-    animation: slideDown 0.5s ease forwards;
-}
-
-#galleryFocus img {
-	max-width: 500px;
-	max-height: 700px;
-}
-
-.chevron-left-modal, .chevron-right-modal {
-	position: absolute;
-	top: 50%;
-	background-color: white;
-	padding: 5px;
-	cursor: pointer;
-}
-
-
-.chevron-left-modal {
-	left: -2%;
-	
-}
-
-.chevron-right-modal {
-	right: -2%;
-}
-
-@keyframes slideDown {
-    from {
-        transform: translateY(-100%);
-        opacity: 0;
-    }
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
+.mg-prev, .mg-next {
+	width: 30px;
+	height: 30px;
+	border-radius: 00%;
+	justify-content: center;
+	align-items: center;
+	display: flex;
+	font-size: 24px;
 }
 
 /* Section quote */

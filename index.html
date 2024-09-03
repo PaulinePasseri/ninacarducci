@@ -8,6 +8,10 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Inter&family=Spectral:ital,wght@0,400;1,300;1,400;1,800&display=swap" rel="stylesheet">
 	<script src="https://kit.fontawesome.com/22175fe4ef.js" crossorigin="anonymous"></script>
+	<script src="./assets/bootstrap/bootstrap.bundle.js"></script>
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+	<script src="./assets/maugallery.js"></script>
+	<script src="./assets/scripts.js"></script>
 	<meta charset="UTF-8">
 	<meta name="description" content="Découvrez les services de photographie professionnelle de Nina Carducci. Spécialisée dans les portraits, les mariages et les événements professionnels, je capture vos moments précieux avec passion et créativité. Contactez-moi dès aujourd'hui !">
 	<title>Nina Carducci photographe</title>
@@ -51,33 +55,30 @@
 		C’est ce que je vous propose : saisir ces merveilleux moments au travers de mon regard, mon approche, ma technique. Rendre ces moments immortels, afin que vous puissiez y puiser de l’amour, du bonheur, de la tendresse et de lumière à chaque fois que vous poserez les yeux sur vos photos.</p>
 	</div>
 </section>
-<section id="gallery">
+<div id="gallery">
 	<h2 class="title">Portfolio</h2>
-	<div class="filters">
-		<span class="filters__btn filters__btn--clicked" id="btn-tous">Tous</span>
-		<span class="filters__btn" id="btn-concerts">Concerts</span>
-		<span class="filters__btn" id="btn-entreprises">Entreprises</span>
-		<span class="filters__btn" id="btn-mariages">Mariages</span>
-		<span class="filters__btn" id="btn-portraits">Portraits</span>
-	</div>
-	<div class="gallery"></div>
-	<aside id="modal" class="modal" aria-hidden="true" role="dialog" aria-modal="false" style="display:none;">
-		<div class="modal_wrapper js-modal-stop">
-			<i class="fa-solid fa-chevron-left chevron-left-modal"></i>
-			<i class="fa-solid fa-chevron-right chevron-right-modal"></i>
-			<div id="galleryFocus">
-			</div>
+	<div class="container py-3">
+		<div class="gallery" style="display: none">
+			<img data-gallery-tag="Concert" class="gallery-item" src="./assets/images/gallery/concerts/aaron-paul-wnX-fXzB6Cw-unsplash.webp"/>
+			<img data-gallery-tag="Entreprises" class="gallery-item" src="./assets/images/gallery/entreprise/ali-morshedlou-WMD64tMfc4k-unsplash.webp"/>
+			<img data-gallery-tag="Entreprises" class="gallery-item" src="./assets/images/gallery/entreprise/jason-goodman-tHO1_OuKbg0-unsplash.webp"/>
+			<img data-gallery-tag="Mariages" class="gallery-item" src="./assets/images/gallery/mariage/hannah-busing-RvF2R_qMpRk-unsplash.webp"/>
+			<img data-gallery-tag="Portrait" class="gallery-item" src="./assets/images/gallery/portraits/ade-tunji-rVkhWWZFAtQ-unsplash.webp"/>
+			<img data-gallery-tag="Mariages" class="gallery-item" src="./assets/images/gallery/mariage/jakob-owens-SiniLJkXhMc-unsplash.webp"/>
+			<img data-gallery-tag="Portrait" class="gallery-item" src="./assets/images/gallery/portraits/nino-van-prattenburg--443cl1uR_8-unsplash.webp"/>
+			<img data-gallery-tag="Concert" class="gallery-item" src="./assets/images/gallery/concerts/austin-neill-hgO1wFPXl3I-unsplash.webp"/>
+			<img data-gallery-tag="Entreprises" class="gallery-item" src="./assets/images/gallery/entreprise/mateus-campos-felipe-Fsgzm8N0hIY-unsplash.webp"/>
 		</div>
-	</aside>
+	</div>
 	<div class="quote">
 		<figure>
 			<blockquote>
-				<p class="quote__text">Un portrait n’est pas une ressemblance. Dès lors qu’une émotion ou qu’un fait est traduit en photo, il cesse d’être un fait pour devenir une opinion. L’inexactitude n’existe pas en photographie. Toutes les photos sont exactes. Aucune d’elles n’est la vérité.</p>
+				<h1 class="quote__text">Un portrait n’est pas une ressemblance. Dès lors qu’une émotion ou qu’un fait est traduit en photo, il cesse d’être un fait pour devenir une opinion. L’inexactitude n’existe pas en photographie. Toutes les photos sont exactes. Aucune d’elles n’est la vérité.</h1>
 			</blockquote>
 			<figcaption class="quote__author">- Richard Avedon</figcaption>
 		</figure>
 	</div>
-</section>
+</div>
 <section id="services">
 	<h2 class="title">Mes services</h2>
 	<div class="container">
@@ -142,6 +143,5 @@
 		</div>
 	</div>
 </section>
-<script src="./assets/scripts.js"></script>
 </body>
 </html>

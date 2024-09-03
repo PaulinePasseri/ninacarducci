@@ -1,3 +1,19 @@
+$(document).ready(function() {
+    $('.gallery').mauGallery({
+        columns: {
+            xs: 1,
+            sm: 2,
+            md: 3,
+            lg: 3,
+            xl: 3
+        },
+        lightBox: true,
+        lightboxId: 'myAwesomeLightbox',
+        showTags: true,
+        tagsPosition: 'top'
+    });
+});
+
 // Gestion du carrousel 
 
 let bannerContainer = document.querySelector(".banner-container")
@@ -94,172 +110,172 @@ window.addEventListener('resize', () => {
 })
 
 
-// ___________________________________________________________
+// // ___________________________________________________________
 
 
-// Gestion de la galerie
-let gallery = document.querySelector(".gallery")
-let works = []
-let currentFilteredImages = []
+// // Gestion de la galerie
+// let gallery = document.querySelector(".gallery")
+// let works = []
+// let currentFilteredImages = []
 
-function getWorks() {
-    fetch("../images.json").then(response => {
-        response.json().then(data => {
-            works = data
-            generateGallery(works)
-        })
-    })
-}
+// function getWorks() {
+//     fetch("../images.json").then(response => {
+//         response.json().then(data => {
+//             works = data
+//             generateGallery(works)
+//         })
+//     })
+// }
 
-// Galerie générée 
-function generateGallery(images) {
-    currentFilteredImages = images
-    gallery.innerHTML = ""
-    images.forEach((image, index) => {
-        const img = document.createElement('img')
-        img.src = image.src
-        img.alt = image.alt
-        img.id = image.id
-        img.addEventListener('click', () => openModal(index))
-        gallery.appendChild(img)
-        setTimeout(() => {
-            img.classList.add('animate');
-        }, index * 50)
-    })
-}
+// // Galerie générée 
+// function generateGallery(images) {
+//     currentFilteredImages = images
+//     gallery.innerHTML = ""
+//     images.forEach((image, index) => {
+//         const img = document.createElement('img')
+//         img.src = image.src
+//         img.alt = image.alt
+//         img.id = image.id
+//         img.addEventListener('click', () => openModal(index))
+//         gallery.appendChild(img)
+//         setTimeout(() => {
+//             img.classList.add('animate');
+//         }, index * 50)
+//     })
+// }
 
-// Gestion des filtres 
-const btnTous = document.getElementById("btn-tous")
-btnTous.addEventListener("click", function() {
-    generateGallery(works)
-    btnActive(btnTous)
-})
+// // Gestion des filtres 
+// const btnTous = document.getElementById("btn-tous")
+// btnTous.addEventListener("click", function() {
+//     generateGallery(works)
+//     btnActive(btnTous)
+// })
 
-const btnConcerts = document.getElementById("btn-concerts")
-btnConcerts.addEventListener("click", function () {
-    const galerieConcerts = works.filter(item => item.tag === "Concerts")
-    generateGallery(galerieConcerts)
-    btnActive(btnConcerts)
-})
-const btnEntreprises = document.getElementById("btn-entreprises")
-btnEntreprises.addEventListener("click", function () {
-    const galerieEntreprises = works.filter(item => item.tag === "Entreprises")
-    generateGallery(galerieEntreprises)
-    btnActive(btnEntreprises)
-})
+// const btnConcerts = document.getElementById("btn-concerts")
+// btnConcerts.addEventListener("click", function () {
+//     const galerieConcerts = works.filter(item => item.tag === "Concerts")
+//     generateGallery(galerieConcerts)
+//     btnActive(btnConcerts)
+// })
+// const btnEntreprises = document.getElementById("btn-entreprises")
+// btnEntreprises.addEventListener("click", function () {
+//     const galerieEntreprises = works.filter(item => item.tag === "Entreprises")
+//     generateGallery(galerieEntreprises)
+//     btnActive(btnEntreprises)
+// })
 
-const btnMariages = document.getElementById("btn-mariages")
-btnMariages.addEventListener("click", function () {
-    const galerieMariages = works.filter(item => item.tag === "Mariages")
-    generateGallery(galerieMariages)
-    btnActive(btnMariages)
-})
+// const btnMariages = document.getElementById("btn-mariages")
+// btnMariages.addEventListener("click", function () {
+//     const galerieMariages = works.filter(item => item.tag === "Mariages")
+//     generateGallery(galerieMariages)
+//     btnActive(btnMariages)
+// })
 
-const btnPortraits = document.getElementById("btn-portraits")
-btnPortraits.addEventListener("click", function () {
-    const galeriePortraits = works.filter(item => item.tag === "Portraits")
-    generateGallery(galeriePortraits)
-    btnActive(btnPortraits)
-})
+// const btnPortraits = document.getElementById("btn-portraits")
+// btnPortraits.addEventListener("click", function () {
+//     const galeriePortraits = works.filter(item => item.tag === "Portraits")
+//     generateGallery(galeriePortraits)
+//     btnActive(btnPortraits)
+// })
 
-function btnActive(e) {
-    document.querySelector(".filters__btn--clicked").classList.remove("filters__btn--clicked")    
-    e.classList.add("filters__btn--clicked")
-}
-
-
-getWorks()
+// function btnActive(e) {
+//     document.querySelector(".filters__btn--clicked").classList.remove("filters__btn--clicked")    
+//     e.classList.add("filters__btn--clicked")
+// }
 
 
+// getWorks()
 
 
-// ______________________________________________________
 
 
-// Gestion de la modale 
-let modal = null
-const focusableSelector = "i"
-let focusables = []
-let currentImageIndex = 0
+// // ______________________________________________________
 
-function updateModalImage() {
-    const image = currentFilteredImages[currentImageIndex]
-    const modalImage = document.createElement('img')
-    modalImage.src = image.src
-    modalImage.alt = image.alt
-    modalImage.classList.add('modal-image')
+
+// // Gestion de la modale 
+// let modal = null
+// const focusableSelector = "i"
+// let focusables = []
+// let currentImageIndex = 0
+
+// function updateModalImage() {
+//     const image = currentFilteredImages[currentImageIndex]
+//     const modalImage = document.createElement('img')
+//     modalImage.src = image.src
+//     modalImage.alt = image.alt
+//     modalImage.classList.add('modal-image')
     
-    const galleryFocus = modal.querySelector("#galleryFocus")
-    galleryFocus.innerHTML = ''
-    galleryFocus.appendChild(modalImage)
-}
+//     const galleryFocus = modal.querySelector("#galleryFocus")
+//     galleryFocus.innerHTML = ''
+//     galleryFocus.appendChild(modalImage)
+// }
 
-// Ouverture de la modale 
-const openModal = function (index) {
-    currentImageIndex = index
-    modal = document.querySelector("#modal")
-    const modalWrapper = modal.querySelector(".modal_wrapper") 
-    focusables = Array.from(modal.querySelectorAll(focusableSelector))
+// // Ouverture de la modale 
+// const openModal = function (index) {
+//     currentImageIndex = index
+//     modal = document.querySelector("#modal")
+//     const modalWrapper = modal.querySelector(".modal_wrapper") 
+//     focusables = Array.from(modal.querySelectorAll(focusableSelector))
     
-    modalWrapper.classList.remove('animate')
+//     modalWrapper.classList.remove('animate')
     
-    modal.style.display = "flex"
-    modal.removeAttribute("aria-hidden")
-    modal.setAttribute("aria-modal", "true")
+//     modal.style.display = "flex"
+//     modal.removeAttribute("aria-hidden")
+//     modal.setAttribute("aria-modal", "true")
 
-    updateModalImage()
+//     updateModalImage()
 
-    setTimeout(() => {
-        modal.classList.add('show')
-        modalWrapper.classList.add('animate')
-    }, 10)
+//     setTimeout(() => {
+//         modal.classList.add('show')
+//         modalWrapper.classList.add('animate')
+//     }, 10)
 
-    modal.addEventListener("click", closeModal)
-    modal.querySelector(".chevron-left-modal").addEventListener("click", showPreviousImage)
-    modal.querySelector(".chevron-right-modal").addEventListener("click", showNextImage)
-    modal.querySelector(".js-modal-stop").addEventListener("click", stopPropagation)
-}
+//     modal.addEventListener("click", closeModal)
+//     modal.querySelector(".chevron-left-modal").addEventListener("click", showPreviousImage)
+//     modal.querySelector(".chevron-right-modal").addEventListener("click", showNextImage)
+//     modal.querySelector(".js-modal-stop").addEventListener("click", stopPropagation)
+// }
 
-function showPreviousImage(e) {
-    e.stopPropagation()
-    if (currentImageIndex > 0) {
-        currentImageIndex--
-    } else {
-        currentImageIndex = currentFilteredImages.length - 1
-    }
+// function showPreviousImage(e) {
+//     e.stopPropagation()
+//     if (currentImageIndex > 0) {
+//         currentImageIndex--
+//     } else {
+//         currentImageIndex = currentFilteredImages.length - 1
+//     }
     
-    updateModalImage()
-}
+//     updateModalImage()
+// }
 
-function showNextImage(e) {
-    e.stopPropagation()
-    if (currentImageIndex < currentFilteredImages.length - 1) {
-        currentImageIndex++
-    } else {
-        currentImageIndex = 0
-    }
+// function showNextImage(e) {
+//     e.stopPropagation()
+//     if (currentImageIndex < currentFilteredImages.length - 1) {
+//         currentImageIndex++
+//     } else {
+//         currentImageIndex = 0
+//     }
     
-    updateModalImage()
-}
+//     updateModalImage()
+// }
 
-const closeModal = function (e) {
-    if (modal === null) return
-    e.preventDefault()
+// const closeModal = function (e) {
+//     if (modal === null) return
+//     e.preventDefault()
     
-    const modalWrapper = modal.querySelector(".modal_wrapper")
+//     const modalWrapper = modal.querySelector(".modal_wrapper")
     
-    // Retirez les classes d'animation
-    modal.classList.remove('show')
-    modalWrapper.classList.remove('animate')
+//     // Retirez les classes d'animation
+//     modal.classList.remove('show')
+//     modalWrapper.classList.remove('animate')
     
-    setTimeout(() => {
-        modal.style.display = "none"
-        modal.setAttribute("aria-hidden", "true")
-        modal.removeAttribute("aria-modal")
-        modal.removeEventListener("click", closeModal)
-        modal.querySelector(".chevron-left-modal").removeEventListener("click", showPreviousImage)
-        modal.querySelector(".chevron-right-modal").removeEventListener("click", showNextImage)
-        modal.querySelector(".js-modal-stop").removeEventListener("click", stopPropagation)
-        modal = null
-    }, 300) 
-}
+//     setTimeout(() => {
+//         modal.style.display = "none"
+//         modal.setAttribute("aria-hidden", "true")
+//         modal.removeAttribute("aria-modal")
+//         modal.removeEventListener("click", closeModal)
+//         modal.querySelector(".chevron-left-modal").removeEventListener("click", showPreviousImage)
+//         modal.querySelector(".chevron-right-modal").removeEventListener("click", showNextImage)
+//         modal.querySelector(".js-modal-stop").removeEventListener("click", stopPropagation)
+//         modal = null
+//     }, 300) 
+// }
