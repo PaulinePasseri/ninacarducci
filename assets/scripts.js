@@ -103,7 +103,7 @@ let works = []
 let currentFilteredImages = []
 
 function getWorks() {
-    fetch("../images.json").then(response => {
+    fetch("../assets/images.json").then(response => {
         response.json().then(data => {
             works = data
             generateGallery(works)
