@@ -315,6 +315,9 @@ input[type="submit"] {
 		text-align: center;
 		margin-top: 1em;
 	}
+	.about-me__contact {
+		text-align: center;
+	}
 	#services .container {
 		flex-direction: column;
 	}
@@ -379,6 +382,9 @@ input[type="submit"] {
 	#about, #contact {
 		padding-inline: 2em;
 		padding-block: 2em;
+	}
+	.about-me__contact {
+		text-align: center;
 	}
 	form {
 		width: 100%;
